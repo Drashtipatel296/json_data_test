@@ -1,19 +1,17 @@
 class DataModel {
-  List? post;
   int? total;
   int? skip;
   int? limit;
-  PostModel? postModel;
+  List<PostModel>? posts;
 
-  DataModel({this.post, this.total, this.skip, this.limit, this.postModel});
+  DataModel({this.total, this.skip, this.limit, this.posts});
 
   factory DataModel.fromJson(Map json){
     return DataModel(
-      post: json['post'],
       total: json['total'],
       skip: json['skip'],
       limit: json['limit'],
-      postModel: PostModel.fromJson(json['postModel']),
+      posts: (json['posts'] as List).map<PostModel>((e) => PostModel.fromJson(e)).toList(),
     );
   }
 }
@@ -37,7 +35,7 @@ class PostModel{
       tags: json['tags'],
       views: json['views'],
       userId: json['userId'],
-      reactions: Reactions.fromJson(json['reaction']),
+      reactions: Reactions.fromJson(json['reactions']),
     );
   }
 }
@@ -54,5 +52,4 @@ class Reactions{
       dislikes: json['dislikes'],
     );
   }
-
 }

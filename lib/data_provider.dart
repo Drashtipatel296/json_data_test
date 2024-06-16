@@ -1,20 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:json_data_test/data_model.dart';
 
-class DataProvider extends ChangeNotifier{
-  List data = [];
-  List<DataModel> dataList = [];
+class DataProvider extends ChangeNotifier {
+  Map data = {};
+  DataModel? dataModel;
 
-  DataProvider(){
-    jsonParsing();
+  void convert(Map data){
+    dataModel = DataModel.fromJson(data);
   }
-
-  Future<void> jsonParsing() async {
-    String json = await rootBundle.loadString('assets/json_data.dart');
-    // dataList =
-  }
-
-
-
 }
